@@ -63,8 +63,8 @@ def clean_up_gender_data(gender):
     gender = gender.astype(np.int)
     return gender
 
-def split_data(age, gender):
-    folds = list(StratifiedKFold(n_splits=5, shuffle=True, random_state=42).split(gender,age))
+def split_data(age, gender,n_splits=5):
+    folds = list(StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42).split(gender,age))
     print("Training split: {}".format(len(folds[0][0])))
     print("Validation split: {}".format(len(folds[0][1])))
     return folds

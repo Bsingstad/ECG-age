@@ -78,7 +78,7 @@ def attia_network_age(samp_freq,time,num_leads):
 
     model = tf.keras.models.Model(inputs=input_layer, outputs=output_layer)
 
-    model.compile(loss=tf.keras.losses.MeanSquaredError(), optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), metrics=[tf.tf.keras.metrics.MeanAbsoluteError()])
+    model.compile(loss=tf.keras.losses.MeanSquaredError(), optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), metrics=[tf.keras.metrics.MeanAbsoluteError()])
 
     return model
 
@@ -141,7 +141,7 @@ def build_model(input_shape, nb_classes, depth=25, use_residual=True):
     output_layer = tf.keras.layers.Dense(units=nb_classes,activation='linear')(gap_layer)
 
     model = tf.keras.models.Model(inputs=input_layer, outputs=output_layer)
-    #model.compile(loss=[macro_double_soft_f1], optimizer=tf.tf.keras.optimizers.Adam(learning_rate=0.001))
+    #model.compile(loss=[macro_double_soft_f1], optimizer=tf.keras.optimizers.Adam(learning_rate=0.001))
     model.compile(loss=tf.keras.losses.MeanAbsoluteError(), optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), metrics=[tf.keras.metrics.MeanSquaredError()])
     
     return model
