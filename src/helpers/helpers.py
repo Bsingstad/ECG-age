@@ -1,13 +1,12 @@
-from scipy.io import loadmat
-import numpy as np
 import os
-import tqdm
-from scipy import signal
 from typing import Generator, Optional
 
-from tensorflow.keras.preprocessing.sequence import pad_sequences
+import numpy as np
+import tqdm
+from scipy import signal
 from scipy.io import loadmat
 from sklearn.model_selection import StratifiedKFold
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
 def load_challenge_data(filename):
@@ -69,7 +68,7 @@ def clean_up_gender_data(gender):
     gender[np.where(gender == "Female")] = 1
     gender[np.where(gender == "female")] = 1
     gender[np.where(gender == "F")] = 1
-    gender[np.where(gender == "NaN")] = 2 
+    gender[np.where(gender == "NaN")] = 2
     gender = gender.astype(np.int)
     return gender
 
@@ -99,7 +98,9 @@ def male_or_female(gender, age, ecg_filenames, labels, g="female"):
     return gender, age, ecg_filenames, labels
 
 
-def remove_nan_and_unknown_values(ecg_filenames, gender, age, labels):
+def remove_nan_and_unknown_values(
+    ecg_filenames, gender: np.ndarray, age: np.ndarray, labels
+):
 
     ecg_filenames = np.delete(ecg_filenames, np.where(age == "NaN"))
     gender = np.delete(gender, np.where(age == "NaN"))
@@ -117,7 +118,14 @@ def remove_nan_and_unknown_values(ecg_filenames, gender, age, labels):
     return ecg_filenames, gender, age, labels
 
 
-def shuffle_batch_generator_age(batch_size:int, gen_x: Generator, gen_y: Generator, num_leads:int, samp_freq:int, time:int):
+def shuffle_batch_generator_age(
+    batch_size: int,
+    gen_x: Generator,
+    gen_y: Generator,
+    num_leads: int,
+    samp_freq: int,
+    time: int,
+):
     batch_features = np.zeros((batch_size, samp_freq * time, num_leads))
     batch_labels_1 = np.zeros((batch_size, 1))
 
@@ -136,7 +144,7 @@ def generate_y_age(y_train: np.ndarray):
             yield i
 
 
-def generate_X_age(X_train: np.ndarray, samp_freq:int, num_leads:int):
+def generate_X_age(X_train: np.ndarray, samp_freq: int, num_leads: int):
     while True:
         for h in X_train:
             data, header_data = load_challenge_data(h)
@@ -178,7 +186,7 @@ def load_header(header_file) -> str:
     return header
 
 
-def get_labels(header:str) -> list:
+def get_labels(header: str) -> list:
     labels = list()
     for l in header.split("\n"):
         if l.startswith("#Dx"):
@@ -191,14 +199,14 @@ def get_labels(header:str) -> list:
     return labels
 
 
-def is_integer(x:Optional[str]) -> Optional[int]:
+def is_integer(x: Optional[str]) -> Optional[int]:
     if is_number(x):
         return float(x).is_integer()
     else:
         return False
 
 
-def is_number(x:Optional[str]) -> Optional[float]:
+def is_number(x: Optional[str]) -> Optional[float]:
     try:
         float(x)
         return True

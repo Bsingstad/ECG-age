@@ -53,6 +53,7 @@ pandas==1.4.2
 parso==0.8.3
 pathspec==0.9.0
 pickleshare==0.7.5
+pipenv==2022.6.7
 platformdirs==2.5.2
 pluggy==1.0.0
 pre-commit==2.19.0
@@ -96,6 +97,7 @@ traitlets==5.2.2.post1
 typing_extensions==4.2.0
 urllib3==1.26.9
 virtualenv==20.14.1
+virtualenv-clone==0.5.7
 wcwidth==0.2.5
 Werkzeug==2.1.2
 wrapt==1.14.1
