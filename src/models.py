@@ -122,7 +122,7 @@ def _shortcut_layer(input_tensor, out_tensor):
     x = tf.keras.layers.Activation('relu')(x)
     return x
 
-def build_model(input_shape, nb_classes, depth=25, use_residual=True):
+def build_model(input_shape, nb_classes, depth=6, use_residual=True):
     input_layer = tf.keras.layers.Input(input_shape)
 
     x = input_layer
