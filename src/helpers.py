@@ -69,7 +69,7 @@ def split_data(age, gender,n_splits=5):
     print("Validation split: {}".format(len(folds[0][1])))
     return folds
 
-def male_or_female(gender, age, ecg_filenames, g="female"):
+def male_or_female(gender, age, ecg_filenames, labels, g="female"):
     if g == "female":
         gender_idx = 0
     elif g == "male":
@@ -80,7 +80,7 @@ def male_or_female(gender, age, ecg_filenames, g="female"):
     ecg_filenames = np.delete(ecg_filenames,np.where(gender == gender_idx))
     labels = np.delete(labels,np.where(gender == gender_idx))
     gender = np.delete(gender,np.where(gender == gender_idx))
-    return gender, age, ecg_filenames
+    return gender, age, ecg_filenames, labels
 
 
 def remove_nan_and_unknown_values(ecg_filenames, gender, age, labels):
