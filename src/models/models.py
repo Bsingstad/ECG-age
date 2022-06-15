@@ -2,7 +2,7 @@ import tensorflow as tf
 from typing import Tuple
 
 
-def attia_network_age(samp_freq: int, time: int, num_leads: int):
+def attia_network_age(samp_freq: int, time: int, num_leads: int) -> tf.keras.models.Model:
     """The model proposed by Attia et al. 2019"""
     input_layer = tf.keras.layers.Input(shape=(samp_freq * time, num_leads))
 
@@ -179,7 +179,10 @@ def build_model(
     nb_classes: int,
     depth: int = 6,
     use_residual: bool = True,
-):
+)-> tf.keras.models.Model:
+    """
+    Model proposed by HI Fawas et al 2019 "Finding AlexNet for Time Series Classification - InceptionTime"
+    """
     input_layer = tf.keras.layers.Input(input_shape)
 
     x = input_layer

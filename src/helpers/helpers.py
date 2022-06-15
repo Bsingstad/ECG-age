@@ -3,6 +3,7 @@ import numpy as np
 import os
 import tqdm
 from scipy import signal
+from typing import Generator, Optional
 
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from scipy.io import loadmat
@@ -68,8 +69,7 @@ def clean_up_gender_data(gender):
     gender[np.where(gender == "Female")] = 1
     gender[np.where(gender == "female")] = 1
     gender[np.where(gender == "F")] = 1
-    gender[np.where(gender == "NaN")] = 0  # only one nan
-    np.unique(gender)
+    gender[np.where(gender == "NaN")] = 2 
     gender = gender.astype(np.int)
     return gender
 
@@ -117,7 +117,7 @@ def remove_nan_and_unknown_values(ecg_filenames, gender, age, labels):
     return ecg_filenames, gender, age, labels
 
 
-def shuffle_batch_generator_age(batch_size, gen_x, gen_y, num_leads, samp_freq, time):
+def shuffle_batch_generator_age(batch_size:int, gen_x: Generator, gen_y: Generator, num_leads:int, samp_freq:int, time:int):
     batch_features = np.zeros((batch_size, samp_freq * time, num_leads))
     batch_labels_1 = np.zeros((batch_size, 1))
 
@@ -130,13 +130,13 @@ def shuffle_batch_generator_age(batch_size, gen_x, gen_y, num_leads, samp_freq, 
         yield batch_features, batch_labels_1
 
 
-def generate_y_age(y_train):
+def generate_y_age(y_train: np.ndarray):
     while True:
         for i in y_train:
             yield i
 
 
-def generate_X_age(X_train, samp_freq, num_leads):
+def generate_X_age(X_train: np.ndarray, samp_freq:int, num_leads:int):
     while True:
         for h in X_train:
             data, header_data = load_challenge_data(h)
@@ -172,13 +172,13 @@ def generate_X_age(X_train, samp_freq, num_leads):
             yield data
 
 
-def load_header(header_file):
+def load_header(header_file) -> str:
     with open(header_file, "r") as f:
         header = f.read()
     return header
 
 
-def get_labels(header):
+def get_labels(header:str) -> list:
     labels = list()
     for l in header.split("\n"):
         if l.startswith("#Dx"):
@@ -191,14 +191,14 @@ def get_labels(header):
     return labels
 
 
-def is_integer(x):
+def is_integer(x:Optional[str]) -> Optional[int]:
     if is_number(x):
         return float(x).is_integer()
     else:
         return False
 
 
-def is_number(x):
+def is_number(x:Optional[str]) -> Optional[float]:
     try:
         float(x)
         return True
