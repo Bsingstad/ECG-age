@@ -69,6 +69,37 @@ def split_data(age, gender,n_splits=5):
     print("Validation split: {}".format(len(folds[0][1])))
     return folds
 
+def male_or_female(gender, age, ecg_filenames, g="female"):
+    if g == "female":
+        gender_idx = 0
+    elif g == "male":
+        gender_idx = 1
+    else:
+        print("unsupported category")
+    age = np.delete(age,np.where(gender == gender_idx))
+    ecg_filenames = np.delete(ecg_filenames,np.where(gender == gender_idx))
+    labels = np.delete(labels,np.where(gender == gender_idx))
+    gender = np.delete(gender,np.where(gender == gender_idx))
+    return gender, age, ecg_filenames
+
+
+def remove_nan_and_unknown_values(ecg_filenames, gender, age, labels):
+
+    ecg_filenames = np.delete(ecg_filenames,np.where(age == "NaN"))
+    gender = np.delete(gender,np.where(age == "NaN"))
+    labels = np.delete(labels,np.where(age == "NaN"))
+    age = np.delete(age,np.where(age == "NaN"))
+
+
+    age = np.delete(age,np.where(gender == "NaN"))
+    age = np.delete(age,np.where(gender == "Unknown"))
+    ecg_filenames = np.delete(ecg_filenames,np.where(gender == "NaN"))
+    ecg_filenames = np.delete(ecg_filenames,np.where(gender == "Unknown"))
+    labels = np.delete(labels,np.where(gender == "NaN"))
+    labels = np.delete(labels,np.where(gender == "Unknown"))
+    gender = np.delete(gender,np.where(gender == "NaN"))
+    gender = np.delete(gender,np.where(gender == "Unknown"))
+    return ecg_filenames, gender, age, labels
 
 def shuffle_batch_generator_age(batch_size, gen_x,gen_y,num_leads, samp_freq,time): 
     batch_features = np.zeros((batch_size,samp_freq*time, num_leads))
