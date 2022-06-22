@@ -26,5 +26,8 @@ The easyest way to open the Jupyter Notebooks from this GitHub repository in Goo
 
 
 ## Tasks:
-[_] make user on google colab
-[_] 
+- [ ] make user on google colab
+- [ ] add Google colab extention to Google Chrome
+- [ ] make user in Kaggle and get kaggle.json token from your kaggle profile
+- [ ] Run the cross-validation notebook in google colab
+- [ ] Run the training notebook in google colab, store the model as a .h5-file and commit the file to GitHub in the "Model"-folder 
