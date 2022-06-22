@@ -24,6 +24,8 @@ The easyest way to open the Jupyter Notebooks from this GitHub repository in Goo
 3. Click on the Notebook, in this GitHub repository, you want to open
 4. Finally click on your new Google Colab extention right underneath the tabs in your Google Chrome browser.
 
+## Paper
+https://www.overleaf.com/project/62a979c1e9c73386a522e4b7
 
 ## Tasks:
 - [ ] make user on google colab
