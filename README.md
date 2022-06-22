@@ -23,3 +23,8 @@ The easyest way to open the Jupyter Notebooks from this GitHub repository in Goo
 2. Install the Google Colab extention: https://chrome.google.com/webstore/detail/open-in-colab/iogfkhleblhcpcekbiedikdehleodpjo
 3. Click on the Notebook, in this GitHub repository, you want to open
 4. Finally click on your new Google Colab extention right underneath the tabs in your Google Chrome browser.
+
+
+## Tasks:
+[_] make user on google colab
+[_] 
