@@ -22,8 +22,6 @@ class get_features:
     def _calc_mean_and_std(sequence):
         return sequence.mean(), sequence.std()
 
-        ecg_signal = signal_sanitize(ecg_signal)
-
     def get_ecg_data(self):
         ecg_cleaned = nk.ecg_clean(self.ecg_waveform, sampling_rate=self.sample_frequency, method="neurokit")
         # R-peaks
