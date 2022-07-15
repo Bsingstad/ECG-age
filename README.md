@@ -33,4 +33,4 @@ https://www.overleaf.com/project/62a979c1e9c73386a522e4b7
 - [x] make user in Kaggle and get kaggle.json token from your kaggle profile
 - [x] Run the cross-validation notebook in google colab
 - [x] Run the training notebook in google colab, store the model as a .h5-file and commit the file to GitHub in the "Model"-folder 
-- [ ] Run the testset_performance.ipynb notebook in google colab and upload the model weights created in the previuos task. 
+- [x] Run the testset_performance.ipynb notebook in google colab and upload the model weights created in the previuos task. 
