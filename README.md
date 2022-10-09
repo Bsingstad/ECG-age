@@ -3,7 +3,6 @@
 ### Reproduce experiments
 To reproduce the experiments in this GitHub repository, you should run the Jupyter Notebooks in the following order:
 
-* hyperparameter_optimization.ipynb [not started on yet]
 * cross_validation.ipynb
 * final_training.ipynb
 * testset_performance.ipynb
