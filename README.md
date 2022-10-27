@@ -3,21 +3,14 @@
 ### Reproduce experiments
 To reproduce the experiments in this GitHub repository, you should run the Jupyter Notebooks in the following order:
 
-* hyperparameter_optimization.ipynb [not started on yet]
 * cross_validation.ipynb
 * final_training.ipynb
 * testset_performance.ipynb
-* testset_and_XAI.ipynb [not started on yet]
-
-In addition there are two notebooks with the purpose of doing exploratory data analysis on the training and testset
-
-* EDA_training.ipynb [not started on yet]
-* EDA_test.ipynb [not started on yet]
 
 ### Run Jupyter Notebooks in Google Colab
 To run the Jupyter Notebooks you will need GPUs. For those of you who don't have your own GPU, we thought that it would be convenient to use free GPUs from Google.
 
-The easyest way to open the Jupyter Notebooks from this GitHub repository in Google Colab is to:
+The easiest way to open the Jupyter Notebooks from this GitHub repository in Google Colab is to:
 
 1. Use a Google Chrome browser
 2. Install the Google Colab extention: https://chrome.google.com/webstore/detail/open-in-colab/iogfkhleblhcpcekbiedikdehleodpjo
@@ -27,10 +20,3 @@ The easyest way to open the Jupyter Notebooks from this GitHub repository in Goo
 ## Paper
 https://www.overleaf.com/project/62a979c1e9c73386a522e4b7
 
-## Tasks:
-- [x] make user on google colab
-- [x] add Google colab extention to Google Chrome
-- [x] make user in Kaggle and get kaggle.json token from your kaggle profile
-- [x] Run the cross-validation notebook in google colab
-- [x] Run the training notebook in google colab, store the model as a .h5-file and commit the file to GitHub in the "Model"-folder 
-- [x] Run the testset_performance.ipynb notebook in google colab and upload the model weights created in the previuos task. 
