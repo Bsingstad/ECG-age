@@ -34,7 +34,7 @@ ipython==8.4.0
 jedi==0.18.1
 joblib==1.1.0
 jupyter-client==7.3.4
-jupyter-core==4.10.0
+jupyter-core==4.11.2
 keras==2.9.0
 Keras-Preprocessing==1.1.2
 libclang==14.0.1
@@ -102,3 +102,4 @@ wcwidth==0.2.5
 Werkzeug==2.1.2
 wrapt==1.14.1
 zipp==3.8.0
+wheel>=0.38.0 # not directly required, pinned by Snyk to avoid a vulnerability
