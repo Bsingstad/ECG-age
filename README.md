@@ -1,5 +1,7 @@
 # Age estimation using AI on 12-lead ECGs
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/using-deep-convolutional-neural-networks-to-2/age-estimation-on-physionet-challenge-2021)](https://paperswithcode.com/sota/age-estimation-on-physionet-challenge-2021?p=using-deep-convolutional-neural-networks-to-2)
+
 ### Reproduce experiments
 To reproduce the experiments in this GitHub repository, you should run the Jupyter Notebooks in the following order:
 
