@@ -6,12 +6,13 @@ import matplotlib.pyplot as plt
 import sys
 import numpy as np
 import neurokit2 as nk
+from sklearn.preprocessing import MinMaxScaler
 
 sys.path.append("../")
 from src.models.models import *
 
 model = build_model((1000,1),1)
-model.load_weights("./model_weights_leadII.h5")
+model.load_weights("./model_weights_leadI.h5")
 
 NEW_SAMP_FREQ = 100
 ECG_LEN = 10
@@ -36,20 +37,19 @@ while  elapsed < ECG_LEN:
             num_int = num_int
         except:
             num_int = 0
-    num_int = num_int * (3.3 / 1023.0) * 1000 
     ecg.append(num_int)
     print(num_int)
 ser.close()
 ecg = np.asarray(ecg)
-ecg_resamp = signal.resample(ecg, NEW_SAMP_FREQ*ECG_LEN)
+scaler = MinMaxScaler()
+ecg = scaler.fit_transform(np.expand_dims(ecg,1))
+ecg_resamp = signal.resample(ecg[:,0], NEW_SAMP_FREQ*ECG_LEN)
 ecg_clean = nk.ecg.ecg_clean(ecg_resamp, sampling_rate=100)
-plt.plot(ecg_clean)
+ecg_clean = np.expand_dims(np.expand_dims(ecg_clean,0),-1)
+plt.plot(ecg_clean[0,:,0])
 plt.xlabel('Time')
 plt.ylabel('Voltage')
 plt.title('ECG reading 10 seconds')
 plt.show()
 
-
-ecg_resamp = np.expand_dims(ecg_resamp,-1)
-ecg_resamp = np.expand_dims(ecg_resamp,0)
-print("Predicted age: {} years old".format(int(model.predict(ecg_resamp)[0][0])))
+print("Predicted age: {} years old".format(int(model.predict(ecg_clean)[0][0])))
