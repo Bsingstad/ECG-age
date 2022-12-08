@@ -7,7 +7,8 @@ from scipy import signal
 from scipy.io import loadmat
 from sklearn.model_selection import StratifiedKFold
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-
+from sklearn.preprocessing import StandardScaler
+import pickle
 
 def load_challenge_data(filename):
     x = loadmat(filename)
@@ -179,6 +180,18 @@ def generate_X_age(X_train: np.ndarray, samp_freq: int, num_leads: int):
             data = np.moveaxis(data, 0, -1)
             yield data
 
+def generate_X_age_leadII(X_train: np.ndarray, samp_freq: int, num_leads: int=1):
+    while True:
+        for h in X_train:
+            data, header_data = load_challenge_data(h)
+            #data = np.expand_dims(data[1,:],0)
+            data = data[1,:]
+            data_new = np.ones((1,1000))
+            data_new[0] = signal.resample(data,1000)
+            data_new = np.moveaxis(data_new, 0, -1)
+            yield data_new
+
+
 
 def load_header(header_file) -> str:
     with open(header_file, "r") as f:
@@ -212,3 +225,22 @@ def is_number(x: Optional[str]) -> Optional[float]:
         return True
     except (ValueError, TypeError):
         return False
+
+def preprocess_signals(X_train, X_validation, X_test):
+    # Standardize data such that mean 0 and variance 1
+    ss = StandardScaler()
+    ss.fit(np.vstack(X_train).flatten()[:,np.newaxis].astype(float))
+    
+    # Save Standardizer data
+    with open('standard_scaler.pkl', 'wb') as ss_file:
+        pickle.dump(ss, ss_file)
+
+    return apply_standardizer(X_train, ss), apply_standardizer(X_validation, ss), apply_standardizer(X_test, ss)
+
+def apply_standardizer(X, ss):
+    X_tmp = []
+    for x in X:
+        x_shape = x.shape
+        X_tmp.append(ss.transform(x.flatten()[:,np.newaxis]).reshape(x_shape))
+    X_tmp = np.array(X_tmp)
+    return X_tmp
