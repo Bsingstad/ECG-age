@@ -18,16 +18,17 @@ NEW_SAMP_FREQ = 100
 ECG_LEN = 10
 cnt = 0
 elapsed = 0
-start = time.time()
+
 ecg = []
 
 ser = serial.Serial('COM3', 9800, timeout=1)
-
-while  elapsed < ECG_LEN:
+start = time.time()
+while  elapsed < (ECG_LEN + 5):
     elapsed = time.time() - start
     
     line = ser.readline()
-    print(line)
+    if elapsed < 5:
+        print("starting", end="\r")
     string = line.decode()
     stripped_string = string.strip()
     try:
@@ -37,8 +38,10 @@ while  elapsed < ECG_LEN:
             num_int = num_int
         except:
             num_int = 0
-    ecg.append(num_int)
-    print(num_int)
+    if elapsed > 5:
+        print("logging", end="\r")
+        ecg.append(num_int)
+        #print(num_int, end="\r")
 ser.close()
 ecg = np.asarray(ecg)
 scaler = MinMaxScaler()
@@ -49,7 +52,6 @@ ecg_clean = np.expand_dims(np.expand_dims(ecg_clean,0),-1)
 plt.plot(ecg_clean[0,:,0])
 plt.xlabel('Time')
 plt.ylabel('Voltage')
-plt.title('ECG reading 10 seconds')
+plt.suptitle('ECG recording 10 seconds')
+plt.title("Predicted age: {} years old".format(int(model.predict(ecg_clean)[0][0])))
 plt.show()
-
-print("Predicted age: {} years old".format(int(model.predict(ecg_clean)[0][0])))

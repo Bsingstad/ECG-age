@@ -116,6 +116,16 @@ def remove_nan_and_unknown_values(
     labels = np.delete(labels, np.where(gender == "Unknown"))
     gender = np.delete(gender, np.where(gender == "NaN"))
     gender = np.delete(gender, np.where(gender == "Unknown"))
+
+
+    gender = np.delete(gender, np.where(age == "-1"))
+    gender = np.delete(gender, np.where(age == "116"))
+    labels = np.delete(labels, np.where(age == "-1"))
+    labels = np.delete(labels, np.where(age == "116"))
+    ecg_filenames = np.delete(ecg_filenames, np.where(age == "-1"))
+    ecg_filenames = np.delete(ecg_filenames, np.where(age == "116"))
+    age = np.delete(age, np.where(age == "-1"))
+    age = np.delete(age, np.where(age == "116"))
     return ecg_filenames, gender, age, labels
 
 
