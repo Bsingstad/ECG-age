@@ -20,5 +20,7 @@ The easiest way to open the Jupyter Notebooks from this GitHub repository in Goo
 4. Finally click on your new Google Colab extention right underneath the tabs in your Google Chrome browser.
 
 ## Paper
-https://www.overleaf.com/project/62a979c1e9c73386a522e4b7
+[Using deep convolutional neural networks to predict patients age based on ECGs from an independent test cohort](https://septentrio.uit.no/index.php/nldl/article/view/6814/7034)
+
+##
 
