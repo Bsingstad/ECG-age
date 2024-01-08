@@ -22,5 +22,17 @@ The easiest way to open the Jupyter Notebooks from this GitHub repository in Goo
 ## Paper
 [Using deep convolutional neural networks to predict patients age based on ECGs from an independent test cohort](https://septentrio.uit.no/index.php/nldl/article/view/6814/7034)
 
-##
+## Citation
+Please acknowledge our work by citing our conference paper:
+```
+@inproceedings{singstad_2022,
+  title={Using deep convolutional neural networks to predict patients age based on ECGs from an independent test cohort},
+  author={Singstad, Bjorn-Jostein and Tawashi, Bilal},
+  journal={Proceedings of the Northern Lights Deep Learning Workshop},
+  pages={2022--10},
+  year={2022},
+  publisher={Proceedings of the Northern Lights Deep Learning Workshop}
+}
+```
+
 
