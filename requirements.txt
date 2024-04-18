@@ -26,7 +26,7 @@ google-pasta==0.2.0
 grpcio==1.46.3
 h5py==3.7.0
 identify==2.5.1
-idna==3.3
+idna==3.7
 importlib-metadata==4.11.4
 iniconfig==1.1.1
 ipykernel==6.14.0
@@ -35,7 +35,7 @@ jedi==0.18.1
 joblib==1.1.0
 jupyter-client==7.3.4
 jupyter-core==4.10.0
-keras==2.9.0
+keras==2.13.1rc0
 Keras-Preprocessing==1.1.2
 libclang==14.0.1
 Markdown==3.3.7
