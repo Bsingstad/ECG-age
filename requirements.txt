@@ -58,7 +58,7 @@ platformdirs==2.5.2
 pluggy==1.0.0
 pre-commit==2.19.0
 prompt-toolkit==3.0.29
-protobuf==3.19.4
+protobuf==4.25.8
 psutil==5.9.1
 pure-eval==0.2.2
 py==1.11.0
@@ -95,7 +95,7 @@ tornado==6.1
 tqdm==4.64.0
 traitlets==5.2.2.post1
 typing_extensions==4.2.0
-urllib3==1.26.9
+urllib3==2.5.0
 virtualenv==20.14.1
 virtualenv-clone==0.5.7
 wcwidth==0.2.5
